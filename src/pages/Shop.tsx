@@ -120,7 +120,14 @@ const Shop = () => {
                     <h3 className="font-display font-semibold text-foreground mt-1 text-sm">{p.name}</h3>
                     <div className="flex items-center justify-between mt-3">
                       <span className="font-display font-bold text-primary text-lg">${p.price}</span>
-                      <Button variant="hero" size="sm">Add to Cart</Button>
+                      <Button variant="hero" size="sm" onClick={() => {
+                        if (!user) {
+                          toast.error("Please sign in to add to cart");
+                          navigate("/login");
+                        } else {
+                          toast.success("Added to cart!");
+                        }
+                      }}>Add to Cart</Button>
                     </div>
                   </div>
                 </motion.div>
