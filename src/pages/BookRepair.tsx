@@ -114,6 +114,11 @@ const BookRepair = () => {
               <Button variant="hero" size="lg" className="w-full" type="submit" disabled={loading}>
                 {loading ? "Submitting..." : "Submit Repair Request"}
               </Button>
+              <div className="text-center">
+                <Link to="/login" className="text-sm text-primary hover:underline">
+                  Sign in to track your repairs from your dashboard →
+                </Link>
+              </div>
             </motion.form>
           </div>
         </section>
