@@ -9,7 +9,7 @@ const HeroSection = () => (
     {/* Background image */}
     <div className="absolute inset-0">
       <img src={heroImg} alt="Tech repair workspace" className="w-full h-full object-cover" />
-      <div className="absolute inset-0 bg-gradient-to-r from-foreground/90 via-foreground/70 to-foreground/30" />
+      <div className="absolute inset-0 bg-gradient-to-r from-[hsl(220,25%,8%)]/95 via-[hsl(220,25%,8%)]/75 to-[hsl(220,25%,8%)]/40" />
     </div>
 
     <div className="relative container-wide section-padding !pt-28 !pb-20">
