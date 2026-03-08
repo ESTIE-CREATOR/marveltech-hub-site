@@ -44,6 +44,8 @@ const Shop = () => {
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("All");
   const [sort, setSort] = useState<"price-asc" | "price-desc" | "newest">("newest");
+  const { user } = useAuth();
+  const navigate = useNavigate();
 
   const filtered = allProducts
     .filter((p) => category === "All" || p.category === category)
