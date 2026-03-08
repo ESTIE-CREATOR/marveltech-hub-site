@@ -2,6 +2,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { LayoutDashboard, Package, Star, Wrench, Users, LogOut, Smartphone, ChevronLeft, ChevronRight } from "lucide-react";
 import { useState } from "react";
 import ThemeToggle from "@/components/layout/ThemeToggle";
+import { useAuth } from "@/hooks/useAuth";
 import { toast } from "sonner";
 
 const menuItems = [
@@ -16,11 +17,12 @@ const AdminLayout = ({ children }: { children: React.ReactNode }) => {
   const [collapsed, setCollapsed] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
+  const { signOut } = useAuth();
 
-  const handleLogout = () => {
-    localStorage.removeItem("admin_logged_in");
+  const handleLogout = async () => {
+    await signOut();
     toast.success("Logged out");
-    navigate("/admin/login");
+    navigate("/login");
   };
 
   return (
