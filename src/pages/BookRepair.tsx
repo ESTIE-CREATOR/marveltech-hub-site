@@ -1,6 +1,7 @@
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import WhatsAppButton from "@/components/layout/WhatsAppButton";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -114,6 +115,11 @@ const BookRepair = () => {
               <Button variant="hero" size="lg" className="w-full" type="submit" disabled={loading}>
                 {loading ? "Submitting..." : "Submit Repair Request"}
               </Button>
+              <div className="text-center">
+                <Link to="/login" className="text-sm text-primary hover:underline">
+                  Sign in to track your repairs from your dashboard →
+                </Link>
+              </div>
             </motion.form>
           </div>
         </section>

@@ -1,16 +1,16 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Smartphone } from "lucide-react";
+import { Menu, X, Smartphone, LogIn, LayoutDashboard } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import ThemeToggle from "@/components/layout/ThemeToggle";
+import { useAuth } from "@/hooks/useAuth";
 
 const navLinks = [
   { to: "/", label: "Home" },
   { to: "/services", label: "Services" },
   { to: "/shop", label: "Shop" },
   { to: "/book-repair", label: "Book Repair" },
-  { to: "/track-repair", label: "Track Repair" },
   { to: "/reviews", label: "Reviews" },
   { to: "/about", label: "About" },
   { to: "/contact", label: "Contact" },
@@ -19,6 +19,9 @@ const navLinks = [
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const location = useLocation();
+  const { user, role, loading } = useAuth();
+
+  const dashboardLink = role === "admin" ? "/admin" : "/dashboard";
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 glass-card">
@@ -51,6 +54,23 @@ const Navbar = () => {
 
         <div className="hidden lg:flex items-center gap-2">
           <ThemeToggle />
+          {!loading && (
+            user ? (
+              <Button variant="outline" size="sm" asChild>
+                <Link to={dashboardLink}>
+                  <LayoutDashboard className="w-4 h-4 mr-1" />
+                  Dashboard
+                </Link>
+              </Button>
+            ) : (
+              <Button variant="outline" size="sm" asChild>
+                <Link to="/login">
+                  <LogIn className="w-4 h-4 mr-1" />
+                  Login
+                </Link>
+              </Button>
+            )
+          )}
           <Button variant="hero" size="sm" asChild>
             <Link to="/book-repair">Book Repair</Link>
           </Button>
@@ -93,7 +113,24 @@ const Navbar = () => {
                   {l.label}
                 </Link>
               ))}
-              <div className="pt-2">
+              <div className="pt-2 space-y-2">
+                {!loading && (
+                  user ? (
+                    <Button variant="outline" className="w-full" asChild>
+                      <Link to={dashboardLink} onClick={() => setOpen(false)}>
+                        <LayoutDashboard className="w-4 h-4 mr-1" />
+                        Dashboard
+                      </Link>
+                    </Button>
+                  ) : (
+                    <Button variant="outline" className="w-full" asChild>
+                      <Link to="/login" onClick={() => setOpen(false)}>
+                        <LogIn className="w-4 h-4 mr-1" />
+                        Login
+                      </Link>
+                    </Button>
+                  )
+                )}
                 <Button variant="hero" className="w-full" asChild>
                   <Link to="/book-repair" onClick={() => setOpen(false)}>Book Repair</Link>
                 </Button>
