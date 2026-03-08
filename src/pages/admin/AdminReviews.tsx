@@ -5,12 +5,22 @@ import { useState } from "react";
 import { Star, Check, X, Trash2 } from "lucide-react";
 import { toast } from "sonner";
 
-const mockReviews = [
-  { id: 1, name: "John D.", rating: 5, text: "Amazing repair service! Fixed my laptop in 2 hours.", status: "pending" as const },
-  { id: 2, name: "Lisa W.", rating: 4, text: "Good quality accessories at fair prices.", status: "pending" as const },
-  { id: 3, name: "Mike R.", rating: 5, text: "Best tech repair shop in the city. Highly recommend!", status: "pending" as const },
-  { id: 4, name: "Sarah M.", rating: 5, text: "They fixed my MacBook screen in under 3 hours!", status: "approved" as const },
-  { id: 5, name: "James K.", rating: 5, text: "Bought a refurbished laptop — works like new.", status: "approved" as const },
+type Status = "pending" | "approved" | "rejected";
+
+interface Review {
+  id: number;
+  name: string;
+  rating: number;
+  text: string;
+  status: Status;
+}
+
+const mockReviews: Review[] = [
+  { id: 1, name: "John D.", rating: 5, text: "Amazing repair service! Fixed my laptop in 2 hours.", status: "pending" },
+  { id: 2, name: "Lisa W.", rating: 4, text: "Good quality accessories at fair prices.", status: "pending" },
+  { id: 3, name: "Mike R.", rating: 5, text: "Best tech repair shop in the city. Highly recommend!", status: "pending" },
+  { id: 4, name: "Sarah M.", rating: 5, text: "They fixed my MacBook screen in under 3 hours!", status: "approved" },
+  { id: 5, name: "James K.", rating: 5, text: "Bought a refurbished laptop — works like new.", status: "approved" },
 ];
 
 type Status = "pending" | "approved" | "rejected";
