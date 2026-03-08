@@ -6,6 +6,9 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { Search } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "@/hooks/useAuth";
+import { toast } from "sonner";
 
 import imgLaptopDell from "@/assets/products/laptop-dell.jpg";
 import imgLaptopHp from "@/assets/products/laptop-hp.jpg";
