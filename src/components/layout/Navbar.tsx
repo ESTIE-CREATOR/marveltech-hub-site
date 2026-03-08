@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Smartphone } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import ThemeToggle from "@/components/layout/ThemeToggle";
 
 const navLinks = [
   { to: "/", label: "Home" },
@@ -49,19 +50,23 @@ const Navbar = () => {
         </div>
 
         <div className="hidden lg:flex items-center gap-2">
+          <ThemeToggle />
           <Button variant="hero" size="sm" asChild>
             <Link to="/book-repair">Book Repair</Link>
           </Button>
         </div>
 
         {/* Mobile toggle */}
-        <button
-          onClick={() => setOpen(!open)}
-          className="lg:hidden p-2 rounded-md text-foreground hover:bg-secondary"
-          aria-label="Toggle menu"
-        >
-          {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-        </button>
+        <div className="flex lg:hidden items-center gap-1">
+          <ThemeToggle />
+          <button
+            onClick={() => setOpen(!open)}
+            className="p-2 rounded-md text-foreground hover:bg-secondary"
+            aria-label="Toggle menu"
+          >
+            {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          </button>
+        </div>
       </nav>
 
       {/* Mobile menu */}
@@ -90,9 +95,7 @@ const Navbar = () => {
               ))}
               <div className="pt-2">
                 <Button variant="hero" className="w-full" asChild>
-                  <Link to="/book-repair" onClick={() => setOpen(false)}>
-                    Book Repair
-                  </Link>
+                  <Link to="/book-repair" onClick={() => setOpen(false)}>Book Repair</Link>
                 </Button>
               </div>
             </div>
