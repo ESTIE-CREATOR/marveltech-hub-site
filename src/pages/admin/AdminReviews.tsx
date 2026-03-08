@@ -23,7 +23,6 @@ const mockReviews: Review[] = [
   { id: 5, name: "James K.", rating: 5, text: "Bought a refurbished laptop — works like new.", status: "approved" },
 ];
 
-type Status = "pending" | "approved" | "rejected";
 const statusColors: Record<Status, string> = {
   pending: "bg-yellow-500/10 text-yellow-600",
   approved: "bg-accent/10 text-accent",
