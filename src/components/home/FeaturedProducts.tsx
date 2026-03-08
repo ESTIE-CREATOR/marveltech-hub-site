@@ -1,13 +1,18 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Laptop, Smartphone, Headphones, BatteryCharging } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+
+import imgLaptopDell from "@/assets/products/laptop-dell.jpg";
+import imgPhoneIphone from "@/assets/products/phone-iphone.jpg";
+import imgHeadphones from "@/assets/products/headphones.jpg";
+import imgChargerUsbc from "@/assets/products/charger-usbc.jpg";
 
 const products = [
-  { icon: Laptop, name: "Dell Latitude 5520", category: "Laptops", price: "$499", tag: "Refurbished" },
-  { icon: Smartphone, name: "iPhone 13 – 128GB", category: "Phones", price: "$399", tag: "Pre-owned" },
-  { icon: Headphones, name: "Sony WH-1000XM5", category: "Accessories", price: "$249", tag: "New" },
-  { icon: BatteryCharging, name: "65W USB-C Charger", category: "Chargers", price: "$29", tag: "New" },
+  { name: "Dell Latitude 5520", category: "Laptops", price: "$499", tag: "Refurbished", image: imgLaptopDell },
+  { name: "iPhone 13 – 128GB", category: "Phones", price: "$399", tag: "Pre-owned", image: imgPhoneIphone },
+  { name: "Sony WH-1000XM5", category: "Accessories", price: "$249", tag: "New", image: imgHeadphones },
+  { name: "65W USB-C Charger", category: "Chargers", price: "$29", tag: "New", image: imgChargerUsbc },
 ];
 
 const FeaturedProducts = () => (
@@ -42,8 +47,13 @@ const FeaturedProducts = () => (
             viewport={{ once: true }}
             transition={{ delay: i * 0.1 }}
           >
-            <div className="aspect-square bg-secondary flex items-center justify-center relative">
-              <p.icon className="w-16 h-16 text-primary/40 group-hover:text-primary/60 transition-colors" />
+            <div className="aspect-square bg-secondary relative overflow-hidden">
+              <img
+                src={p.image}
+                alt={p.name}
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                loading="lazy"
+              />
               <span className="absolute top-3 left-3 px-2 py-0.5 bg-accent text-accent-foreground text-xs font-medium rounded-full">
                 {p.tag}
               </span>
