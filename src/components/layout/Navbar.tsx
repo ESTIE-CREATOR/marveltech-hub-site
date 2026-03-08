@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Smartphone, LogIn, LayoutDashboard } from "lucide-react";
+import { Menu, X, LogIn, LayoutDashboard } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import ThemeToggle from "@/components/layout/ThemeToggle";
 import { useAuth } from "@/hooks/useAuth";
+import logo from "@/assets/logo.png";
 
 const navLinks = [
   { to: "/", label: "Home" },
@@ -27,9 +28,7 @@ const Navbar = () => {
     <header className="fixed top-0 left-0 right-0 z-50 glass-card">
       <nav className="container-wide flex items-center justify-between h-16 px-4 sm:px-6 lg:px-8">
         <Link to="/" className="flex items-center gap-2">
-          <div className="w-9 h-9 rounded-lg bg-primary flex items-center justify-center">
-            <Smartphone className="w-5 h-5 text-primary-foreground" />
-          </div>
+          <img src={logo} alt="MarvelTechHub4U" className="w-9 h-9 rounded-lg object-contain" />
           <span className="font-display font-bold text-lg text-foreground">
             Marvel<span className="text-primary">TechHub</span>4U
           </span>

@@ -6,6 +6,9 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { Search } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "@/hooks/useAuth";
+import { toast } from "sonner";
 
 import imgLaptopDell from "@/assets/products/laptop-dell.jpg";
 import imgLaptopHp from "@/assets/products/laptop-hp.jpg";
@@ -41,6 +44,8 @@ const Shop = () => {
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("All");
   const [sort, setSort] = useState<"price-asc" | "price-desc" | "newest">("newest");
+  const { user } = useAuth();
+  const navigate = useNavigate();
 
   const filtered = allProducts
     .filter((p) => category === "All" || p.category === category)
@@ -117,7 +122,14 @@ const Shop = () => {
                     <h3 className="font-display font-semibold text-foreground mt-1 text-sm">{p.name}</h3>
                     <div className="flex items-center justify-between mt-3">
                       <span className="font-display font-bold text-primary text-lg">${p.price}</span>
-                      <Button variant="hero" size="sm">Add to Cart</Button>
+                      <Button variant="hero" size="sm" onClick={() => {
+                        if (!user) {
+                          toast.error("Please sign in to add to cart");
+                          navigate("/login");
+                        } else {
+                          toast.success("Added to cart!");
+                        }
+                      }}>Add to Cart</Button>
                     </div>
                   </div>
                 </motion.div>
